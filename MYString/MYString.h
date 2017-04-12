@@ -12,6 +12,7 @@ public:
 	void MYString::setEqualTo(MYString& argStr);
 	void MYString::write(std::ostream& ostr);
 	bool MYString::read(std::istream& istr);
+	int MYString::compareTo(MYString& argStr);
 	~MYString();
 private:
 	int len = 0;

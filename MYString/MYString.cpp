@@ -71,10 +71,9 @@ char MYString::at(int index)
  {
 	 char* readBuf = new char[100];
 	 int i = 0;
-	 while (readBuf[i] != '\0')
+	 while (readBuf[i-1] != '\0')
 	 {
 		 istr >> readBuf[i];
-		
 		 i++;
 	 }
 	 len = i;
@@ -86,6 +85,11 @@ char MYString::at(int index)
 	 }
 	 delete readBuf;
 	 return true;
+ }
+
+ int MYString::compareTo(MYString& argStr)
+ {
+
  }
 
 MYString::~MYString()

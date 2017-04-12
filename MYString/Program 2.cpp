@@ -1,11 +1,19 @@
 // Program 2.cpp : Defines the entry point for the console application.
-//
+////
+//Author: Thoomas Allen
+//Section: S
+//Program name: Program 2
+//Description:
+////
 
 #include "stdafx.h"
 #include "MYString.h"
 #include<iostream>
+#include<vector>
 
 using namespace std;
+
+vector<MYString> strVec[7];
 
 int main()
 {
