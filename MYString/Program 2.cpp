@@ -9,40 +9,61 @@
 #include "stdafx.h"
 #include "MYString.h"
 #include<iostream>
+#include<fstream>
 #include<vector>
+#include<iomanip>
 
 using namespace std;
 
-vector<MYString> strVec[7];
+vector<MYString> strVec(20);
+
 
 int main()
 {
-	MYString str1, str2("batman");
-	MYString str4("robin");
-	MYString str3("12345678901234567890123456789012345678901234567890");
-	cout << str1.c_str() << " ";
-	cout << str1.length() << ":";
-	cout << str1.capacity() << endl << endl;
-	cout << str2.c_str() << " ";
-	cout << str2.length() << ":";
-	cout << str2.capacity() << endl << endl;
-	cout << str3.c_str() << " ";
-	cout << str3.length() << ":";
-	cout << str3.capacity() << endl << endl;
-	MYString str5;
-	str5.read(cin);
-	str5.write(cout);
-	cout <<  " "<<str5.length()<<":"<<str5.capacity()<< endl;
-	str5.read(cin);
-	str5.write(cout);
-	cout << " " << str5.length() <<  ":" << str5.capacity() << endl;
-	str5.read(cin);
-	str5.write(cout);
-	cout << " " << str5.length() <<  ":" << str5.capacity() << endl;
-	str3.setEqualTo(str3);
-	cout << "comparing str2 to str4 (batman to robin) " << str2.compareTo(str4)<<endl;
-	cout << "now comparing robin to batman " << str4.compareTo(str2) << endl;
-	cout << "comparing input to batman " << str2.compareTo(str5) << endl;
+	//strVec.reserve(20);
+	ifstream inFile;
+	inFile.open("infile2.txt");
+	if (inFile.is_open())
+	{
+		int index = 0;
+		while (!inFile.eof())
+		{
+			if ((index + 1) == strVec.capacity())
+				strVec.resize(index + 20);
+			//strVec.push_back(MYString());
+			strVec[index].read(inFile);
+			index++;
+		}
+		inFile.close();
+	}
+	else
+	{
+		cout << "Error reading file\n";
+		system("pause");
+		return 1;
+	}
+	for (int i = 0; i < strVec.size(); i++)
+	{
+		for (int j = 0; j < strVec.size(); j++)
+		{
+			if (strVec[j - 1].compareTo(strVec[i])> 0)
+			{
+				MYString tempStr = *new MYString;
+				tempStr.setEqualTo(strVec[i]);
+				strVec[i].setEqualTo(strVec[i - i]);
+				strVec[i - 1].setEqualTo(tempStr);
+			}
+		}
+	}
+	cout << setw(10);
+	for (int i = 0; i < strVec.size(); i + 7)
+	{
+		for (int j = i; (j < i+7) && ((j+1) != strVec.size()); j++)
+		{
+			strVec[i].write(cout);
+		}
+		cout << endl;
+	}
 	system("pause");
 }
 
