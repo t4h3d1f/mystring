@@ -29,15 +29,20 @@ int main()
 	cout << str3.c_str() << " ";
 	cout << str3.length() << ":";
 	cout << str3.capacity() << endl << endl;
-	cout << str2.at(2) << endl;
-	str2.setEqualTo(str4);
-	cout << str2.c_str() << endl;
-	str3.write(cout);
-	cout << endl;
 	MYString str5;
 	str5.read(cin);
 	str5.write(cout);
-	cout << endl;
+	cout <<  " "<<str5.length()<<":"<<str5.capacity()<< endl;
+	str5.read(cin);
+	str5.write(cout);
+	cout << " " << str5.length() <<  ":" << str5.capacity() << endl;
+	str5.read(cin);
+	str5.write(cout);
+	cout << " " << str5.length() <<  ":" << str5.capacity() << endl;
+	str3.setEqualTo(str3);
+	cout << "comparing str2 to str4 (batman to robin) " << str2.compareTo(str4)<<endl;
+	cout << "now comparing robin to batman " << str4.compareTo(str2) << endl;
+	cout << "comparing input to batman " << str2.compareTo(str5) << endl;
 	system("pause");
 }
 

@@ -9,7 +9,7 @@ MYString::MYString()
 	str[0] = '\0';
 }
 
-MYString::MYString(char* in)
+MYString::MYString(const char* in)
 {
 	while (in[len] != '\0')
 	{
@@ -47,15 +47,18 @@ char MYString::at(int index)
 	return str;
 }
 
- void MYString::setEqualTo(MYString& argStr)
+ void MYString::setEqualTo(const MYString& argStr)
  {
-	 delete str;
-	 len = argStr.length();
-	 cap = argStr.capacity();
-	 str = new char[cap];
-	 for (int i = 0; i < len; i++)
+	 if (&argStr != this)
 	 {
-		 str[i] = argStr.at(i);
+		 delete str;
+		 len = argStr.len;
+		 cap = argStr.cap;
+		 str = new char[cap];
+		 for (int i = 0; i < len; i++)
+		 {
+			 str[i] = argStr.str[i];
+		 }
 	 }
  }
 
@@ -70,28 +73,35 @@ char MYString::at(int index)
  bool MYString::read(std::istream& istr)
  {
 	 char* readBuf = new char[100];
-	 int i = 0;
-	 while (readBuf[i-1] != '\0')
+	 istr >> readBuf;
+	 len = 0;
+	 while (readBuf[len-1] != '\0')
 	 {
-		 istr >> readBuf[i];
-		 i++;
+		 len++;
 	 }
-	 len = i;
 	 cap = ((len / 20) + 1) * 20;
 	 str = new char[cap];
-	 for (int j = 0; j < len; j++)
+	 for(int i = 0; i < len; i++)
 	 {
-		 str[j] = readBuf[j];
+		 str[i] = readBuf[i];
 	 }
 	 delete readBuf;
 	 return true;
  }
 
- int MYString::compareTo(MYString& argStr)
+ int MYString::compareTo(const MYString& argStr)
  {
-
+	 int sumDiff = 0;
+	 for (int i = 0; i < len; i++)
+	 {
+		 sumDiff = str[i] - argStr.str[i];
+		 if (sumDiff != 0)
+			 return sumDiff;
+	 }
+	 return 0;
  }
 
 MYString::~MYString()
 {
+	delete[] str;
 }

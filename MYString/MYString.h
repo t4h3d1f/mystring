@@ -4,15 +4,15 @@ class MYString
 {
 public:
 	MYString();
-	MYString(char*);
+	MYString(const char*);
 	int MYString::length();
 	int MYString::capacity();
 	char MYString::at(int index);
 	char* MYString::c_str();
-	void MYString::setEqualTo(MYString& argStr);
+	void MYString::setEqualTo(const MYString &argStr);
 	void MYString::write(std::ostream& ostr);
 	bool MYString::read(std::istream& istr);
-	int MYString::compareTo(MYString& argStr);
+	int MYString::compareTo(const MYString& argStr);
 	~MYString();
 private:
 	int len = 0;
