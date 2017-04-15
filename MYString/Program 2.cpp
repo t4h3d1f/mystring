@@ -15,7 +15,7 @@
 
 using namespace std;
 
-vector<MYString> strVec(20);
+vector<MYString> strVec(100);
 
 
 int main()
@@ -25,16 +25,18 @@ int main()
 	inFile.open("infile2.txt");
 	if (inFile.is_open())
 	{
+
 		int index = 0;
 		while (!inFile.eof())
 		{
-			if ((index + 1) == strVec.capacity())
-				strVec.resize(index + 20);
+			//if ((index + 1) == strVec.capacity())
+				//strVec.resize(index + 20);
 			//strVec.push_back(MYString());
 			strVec[index].read(inFile);
 			index++;
 		}
 		inFile.close();
+		strVec.resize(index);
 	}
 	else
 	{
@@ -44,26 +46,28 @@ int main()
 	}
 	for (int i = 0; i < strVec.size(); i++)
 	{
-		for (int j = 0; j < strVec.size(); j++)
+		for (int j = 1; j < strVec.size(); j++)
 		{
-			if (strVec[j - 1].compareTo(strVec[i])> 0)
+			if (strVec[j - 1].compareTo(strVec[j])> 0)
 			{
 				MYString tempStr = *new MYString;
-				tempStr.setEqualTo(strVec[i]);
-				strVec[i].setEqualTo(strVec[i - i]);
-				strVec[i - 1].setEqualTo(tempStr);
+				tempStr.setEqualTo(strVec[j]);
+				strVec[j].setEqualTo(strVec[j - 1]);
+				strVec[j - 1].setEqualTo(tempStr);
 			}
 		}
 	}
 	cout << setw(10);
-	for (int i = 0; i < strVec.size(); i + 7)
+	for (int i = 0; i < strVec.size(); i++)
 	{
-		for (int j = i; (j < i+7) && ((j+1) != strVec.size()); j++)
-		{
-			strVec[i].write(cout);
-		}
-		cout << endl;
+		/*for (int j = i; (j < i+7) && ((j+1) != strVec.size()); j++)
+		{*/
+		strVec[i].write(cout);
+		//}
+		if((i%7 == 0) && (i != 0))
+			cout << endl;
 	}
+	cout << endl;
 	system("pause");
 }
 

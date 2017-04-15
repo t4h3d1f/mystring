@@ -1,4 +1,3 @@
 ﻿  Program 2.cpp
-c:\users\thoom\documents\visual studio 2015\projects\mystring\mystring\program 2.cpp(59): warning C4552: '+': operator has no effect; expected operator with side-effect
   MYString.vcxproj -> C:\Users\thoom\Documents\Visual Studio 2015\Projects\mystring\x64\Debug\MYString.exe
   MYString.vcxproj -> C:\Users\thoom\Documents\Visual Studio 2015\Projects\mystring\x64\Debug\MYString.pdb (Full PDB)
