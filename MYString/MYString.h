@@ -15,7 +15,7 @@ public:
 	MYString(const char*);
 	//returns the length of the string
 	int MYString::length();
-	//returns the capacity of the string (increases in blocks of 20
+	//returns the capacity of the string (increases in blocks of 20)
 	int MYString::capacity();
 	//returns the character at the index location given
 	char MYString::at(int index);

@@ -3,7 +3,10 @@
 //Author: Thoomas Allen
 //Section: S
 //Program name: Program 2
-//Description:
+//Description: Reads in the contents of the file "infile2" and sorts the words
+//from smallest to largest based on their ascii value. displays the formatted 
+//output in blocks of 7 words. Only works with files containing 100 or less
+//words.
 ////
 
 #include "stdafx.h"
@@ -20,7 +23,6 @@ vector<MYString> strVec(100);
 
 int main()
 {
-	//strVec.reserve(20);
 	ifstream inFile;
 	inFile.open("infile2.txt");
 	if (inFile.is_open())
@@ -29,9 +31,6 @@ int main()
 		int index = 0;
 		while (!inFile.eof())
 		{
-			//if ((index + 1) == strVec.capacity())
-				//strVec.resize(index + 20);
-			//strVec.push_back(MYString());
 			strVec[index].read(inFile);
 			index++;
 		}
@@ -48,7 +47,7 @@ int main()
 	{
 		for (int j = 1; j < strVec.size(); j++)
 		{
-			if (strVec[j - 1].compareTo(strVec[j])> 0)
+			if (strVec[j - 1].compareTo(strVec[j]) > 0)
 			{
 				MYString tempStr = *new MYString;
 				tempStr.setEqualTo(strVec[j]);
@@ -60,11 +59,8 @@ int main()
 	cout << setw(10);
 	for (int i = 0; i < strVec.size(); i++)
 	{
-		/*for (int j = i; (j < i+7) && ((j+1) != strVec.size()); j++)
-		{*/
 		strVec[i].write(cout);
-		//}
-		if((i%7 == 0) && (i != 0))
+		if ((i % 7 == 0) && (i != 0))
 			cout << endl;
 	}
 	cout << endl;
