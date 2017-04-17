@@ -1,4 +1,3 @@
-// Program 2.cpp : Defines the entry point for the console application.
 ////
 //Author: Thoomas Allen
 //Section: S
@@ -6,7 +5,7 @@
 //Description: Reads in the contents of the file "infile2" and sorts the words
 //from smallest to largest based on their ascii value. displays the formatted 
 //output in blocks of 7 words. Only works with files containing 100 or less
-//words.
+//words. Prints to a file called outfile.txt
 ////
 
 #include "stdafx.h"
@@ -64,6 +63,16 @@ int main()
 			cout << endl;
 	}
 	cout << endl;
+	ofstream outFile("outfile.txt");
+	outFile << setw(10);
+	for (int i = 0; i < strVec.size(); i++)
+	{
+		strVec[i].write(outFile);
+		if ((i % 7 == 0) && (i != 0))
+			outFile << endl;
+	}
+	outFile << endl;
+	outFile.close();
 	system("pause");
 }
 

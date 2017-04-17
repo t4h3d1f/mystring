@@ -65,9 +65,7 @@ void MYString::setEqualTo(const MYString& argStr)
 void MYString::write(std::ostream& ostr)
 {
 	for (int i = 0; i < len; i++)
-	{
 		ostr << str[i];
-	}
 }
 
 bool MYString::read(std::istream& istr)
@@ -91,6 +89,7 @@ bool MYString::read(std::istream& istr)
 
 int MYString::compareTo(const MYString& argStr)
 {
+
 	int sumDiff = 0;
 	for (int i = 0; i < len; i++)
 	{
